@@ -1,5 +1,5 @@
 # training schedule for 1x
-train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=12, val_interval=1)
+train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=48, val_interval=1)
 val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 
@@ -10,16 +10,16 @@ param_scheduler = [
     dict(
         type='MultiStepLR',
         begin=0,
-        end=12,
+        end=48,
         by_epoch=True,
-        milestones=[8, 11],
+        milestones=[32, 44],
         gamma=0.1)
 ]
 
 # optimizer
 optim_wrapper = dict(
     type='OptimWrapper',
-    optimizer=dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001))
+    optimizer=dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)) # mask R-CNN的lr修改为0.02》0.005
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically
